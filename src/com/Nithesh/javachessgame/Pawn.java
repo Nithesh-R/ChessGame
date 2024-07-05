@@ -11,22 +11,25 @@ public class Pawn extends Piece {
         int rowDiff = (newPosition.getRow() - position.getRow()) * forwardDirection;
         int colDiff = newPosition.getColumn() - position.getColumn();
 
-        //Forward Move
-        if(colDiff == 0 && rowDiff == 1 && board[newPosition.getRow()][newPosition.getColumn()] == null){
+        // Forward Move
+        if (colDiff == 0 && rowDiff == 1 && board[newPosition.getRow()][newPosition.getColumn()] == null) {
             return true; // Move forward one square
         }
 
         // Initial two-square move
-        boolean isStartingPosition = (color == PieceColor.WHITE && position.getRow() == 6) ||(color == PieceColor.BLACK && position.getRow() == 1);
-        if (colDiff == 0 && rowDiff == 2 && isStartingPosition && board[newPosition.getRow()][newPosition.getColumn()] == null) {
-          // Check the square in between for blocking pieces
-          int middleRow = position.getRow() + forwardDirection;
-          if (board[middleRow][position.getColumn()] == null) {
-              return true; // Move forward two squares
+        boolean isStartingPosition = (color == PieceColor.WHITE && position.getRow() == 6)
+                || (color == PieceColor.BLACK && position.getRow() == 1);
+        if (colDiff == 0 && rowDiff == 2 && isStartingPosition
+                && board[newPosition.getRow()][newPosition.getColumn()] == null) {
+            // Check the square in between for blocking pieces
+            int middleRow = position.getRow() + forwardDirection;
+            if (board[middleRow][position.getColumn()] == null) {
+                return true; // Move forward two squares
             }
         }
         // Diagonal capture
-        if (Math.abs(colDiff) == 1 && rowDiff == 1 && board[newPosition.getRow()][newPosition.getColumn()] != null && board[newPosition.getRow()][newPosition.getColumn()].color != this.color) {
+        if (Math.abs(colDiff) == 1 && rowDiff == 1 && board[newPosition.getRow()][newPosition.getColumn()] != null
+                && board[newPosition.getRow()][newPosition.getColumn()].color != this.color) {
             return true; // Capture an opponent's piece
         }
 
