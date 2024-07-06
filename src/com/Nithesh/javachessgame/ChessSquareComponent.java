@@ -1,3 +1,5 @@
+package com.Nithesh.javachessgame;
+
 import javax.swing.*;
 import java.awt.*;
 
